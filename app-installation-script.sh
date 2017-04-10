@@ -2330,9 +2330,10 @@ install_redmine()
 {
 if [ "$ARCH" == "x86_64" ]; then
 	echo "Installing redmine ..." | log_install
+  # at this point, gcc build-essential should be already available
         apt-get -y --force-yes install \
         mysql-server mysql-client libmysqlclient-dev \
-        gcc build-essential zlib1g zlib1g-dev zlibc \
+         zlib1g zlib1g-dev zlibc \
         ruby-zip libssl-dev libyaml-dev libcurl4-openssl-dev \
         ruby ruby2.1 gem libapr1-dev libxslt1-dev checkinstall \
         libxml2-dev ruby-dev vim libmagickwand-dev imagemagick

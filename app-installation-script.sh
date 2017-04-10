@@ -1500,7 +1500,7 @@ install_squidguard_bl()
 	fi
 	# Getting urlblacklist blacklists
 	if [ ! -e urlblacklist ]; then
-	wget http://urlblacklist.com/cgi-bin/commercialdownload.pl?type=download\\&file=bigblacklist -O urlblacklist.tar.gz
+	wget "http://urlblacklist.com/cgi-bin/commercialdownload.pl?type=download&file=bigblacklist" -O urlblacklist.tar.gz
 	rm -rf blacklistdomains
 	mkdir blacklistdomains
 	cd blacklistdomains

@@ -87,6 +87,22 @@ check_internet ()
         echo 'DNS Servers:' $CDNS
 }
 
+# ----------------------------------------------
+# Exit and log functions
+# ----------------------------------------------
+log_install () {
+    read msg
+    echo "$0: $msg $@" | tee -a  /var/libre_install.log
+}
+
+
+die () {
+    rc=$1
+    shift
+    echo "FATAL $@" | log_install
+    exit $rc
+}
+set -o pipefail || die 3 "run it with bash, not sh" #
 
 # ----------------------------------------------
 # check_root

@@ -118,18 +118,18 @@ check_root ()
 # ----------------------------------------------
 # configure_repositories
 # ----------------------------------------------
-configure_repositories () 
+configure_repositories ()
 {
 	# Configuring main repositories before any installation
-        cat << EOF >  /etc/apt/sources.list
-deb http://ftp.debian.org/debian jessie main 
-deb http://ftp.debian.org/debian jessie-updates main 
-deb http://security.debian.org jessie/updates main 
-deb http://ftp.debian.org/debian jessie-backports main 
-deb-src http://ftp.debian.org/debian jessie main 
-deb-src http://ftp.debian.org/debian jessie-updates main 
-deb-src http://security.debian.org jessie/updates main 
-deb-src http://ftp.debian.org/debian jessie-backports main 
+        cat << EOF >  /etc/apt/sources.list.d/libre_base.list
+deb http://ftp.debian.org/debian jessie main
+deb http://ftp.debian.org/debian jessie-updates main
+deb http://security.debian.org jessie/updates main
+deb http://ftp.debian.org/debian jessie-backports main
+deb-src http://ftp.debian.org/debian jessie main
+deb-src http://ftp.debian.org/debian jessie-updates main
+deb-src http://security.debian.org jessie/updates main
+deb-src http://ftp.debian.org/debian jessie-backports main
 EOF
 
 	echo "Time sync ..." | log_install

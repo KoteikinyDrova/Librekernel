@@ -107,10 +107,10 @@ set -o pipefail || die 3 "run it with bash, not sh" #
 # ----------------------------------------------
 check_root ()
 {
-	echo "Checking user root ..." | tee -a /var/libre_install.log
-	if [ "$(whoami)" != "root" ]; then
-		echo "You need to be root to proceed. Exiting" | tee -a /var/libre_install.log
-		exit 2
+  # ROOT USER CAN AND SHOULD BE RENAMED ON MODERN SECURE SYSTEM. NO MATTER WHAT DEBIAN SECURITY TEAM HAS TO THINK OF THAN, THEY'RE SHORT OF WORKFORCE TO FIX THE ISSUE.
+	echo "Checking user having root privileges ..." | log_install
+	if [ "$(id -u)" != "0" ]; then
+		die 3 "You need to have root privileges to proceed. Exiting" | log_install
 	fi
 }
 

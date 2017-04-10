@@ -5,7 +5,7 @@
 PROCESSOR="Not Detected"   	# Processor type (ARM/Intel/AMD)
 HARDWARE="Not Detected"    	# Hardware type (Board/Physical/Virtual)
 PLATFORM="Not Detected"         # Platform type	(U12/U14/D7/D8/T7)
-EXT_INTERFACE="Not Detected"	# External Interface (Connected to Internet) 
+EXT_INTERFACE="Not Detected"	# External Interface (Connected to Internet)
 INT_INTERFACE="Not Detected"	# Internal Interface (Connected to local network)
 
 
@@ -170,9 +170,9 @@ EOF
 	echo "
 Acquire::https::dl.dropboxusercontent.com::Verify-Peer \"false\";
 Acquire::https::deb.nodesource.com::Verify-Peer \"false\";
-        " > /etc/apt/apt.conf.d/apt.conf 
+        " > /etc/apt/apt.conf.d/apt.conf
 
-# Preparing repositories for Ubuntu 12.04 GNU/Linux 
+# Preparing repositories for Ubuntu 12.04 GNU/Linux
 
 	if [ $PLATFORM = "U12" ]; then
 		# Configuring repositories for Ubuntu 12.04
@@ -184,11 +184,11 @@ Acquire::https::deb.nodesource.com::Verify-Peer \"false\";
 			echo "Error: Unable to install apt-transport-https"
 			# exit 3
 		fi
-		
+
 		# Prepare owncloud repo
 		echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/community/Debian_7.0/ /' > /etc/apt/sources.list.d/owncloud.list
 		wget http://download.opensuse.org/repositories/isv:/ownCloud:/community/Debian_7.0/Release.key -O- | apt-key add -
-		
+
 		# Prepare Sogo repo
                 apt-key adv --keyserver keys.gnupg.net --recv-key 0x810273C4
                 echo 'deb http://packages.inverse.ca/SOGo/nightly/3/ubuntu/ precise precise' > /etc/apt/sources.list.d/sogo.list
@@ -196,18 +196,18 @@ Acquire::https::deb.nodesource.com::Verify-Peer \"false\";
 		# Preparing yacy repo
 		echo 'deb http://debian.yacy.net ./' > /etc/apt/sources.list.d/yacy.list
 		apt-key advanced --keyserver pgp.net.nz --recv-keys 03D886E7
-		
-		# preparing i2p repo 
+
+		# preparing i2p repo
         	echo 'deb https://deb.i2p2.de/ precise main' >/etc/apt/sources.list.d/i2p.list
         	echo 'deb-src https://deb.i2p2.de/ precise main' >>/etc/apt/sources.list.d/i2p.list
 
-		# preparing tor repo 
-		# preparing webmin repo 
+		# preparing tor repo
+		# preparing webmin repo
        		echo 'deb http://download.webmin.com/download/repository sarge contrib' > /etc/apt/sources.list.d/webmin.list
         	echo 'deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge contrib' >> /etc/apt/sources.list.d/webmin.list
         	wget  "http://www.webmin.com/jcameron-key.asc" -O- | apt-key add -
 
-# Preparing repositories for Ubuntu 14.04 GNU/Linux 
+# Preparing repositories for Ubuntu 14.04 GNU/Linux
 
 	elif [ $PLATFORM = "U14" ]; then
 		# Configuring repositories for Ubuntu 14.04
@@ -220,7 +220,7 @@ Acquire::https::deb.nodesource.com::Verify-Peer \"false\";
 			echo "Error: Unable to install apt-transport-https"
 			# exit 3
 		fi
-		
+
 		# Prepare owncloud repo
 		echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/community/Debian_7.0/ /' > /etc/apt/sources.list.d/owncloud.list
 		wget http://download.opensuse.org/repositories/isv:/ownCloud:/community/Debian_7.0/Release.key -O- | apt-key add -
@@ -228,23 +228,23 @@ Acquire::https::deb.nodesource.com::Verify-Peer \"false\";
 		# Prepare Sogo repo
                 apt-key adv --keyserver keys.gnupg.net --recv-key 0x810273C4
                 echo 'deb http://packages.inverse.ca/SOGo/nightly/3/ubuntu/ trusty trusty' > /etc/apt/sources.list.d/sogo.list
-		
+
 		# Preparing yacy repo
 		echo 'deb http://debian.yacy.net ./' > /etc/apt/sources.list.d/yacy.list
 		apt-key advanced --keyserver pgp.net.nz --recv-keys 03D886E7
-		
-		# preparing i2p repo 
+
+		# preparing i2p repo
         	#echo 'deb https://deb.i2p2.de/ trusty main' >/etc/apt/sources.list.d/i2p.list
         	#echo 'deb-src https://deb.i2p2.de/ trusty main' >>/etc/apt/sources.list.d/i2p.list
                 echo -ne '\n' | apt-add-repository ppa:i2p-maintainers/i2p
 
-		# preparing tor repo 
-		# preparing webmin repo 
+		# preparing tor repo
+		# preparing webmin repo
        		echo 'deb http://download.webmin.com/download/repository sarge contrib' > /etc/apt/sources.list.d/webmin.list
         	echo 'deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge contrib' >> /etc/apt/sources.list.d/webmin.list
         	wget "http://www.webmin.com/jcameron-key.asc" -O- | apt-key add -
 
-# Preparing repositories for Debian 7 GNU/Linux 
+# Preparing repositories for Debian 7 GNU/Linux
 
 	elif [ $PLATFORM = "D7" ]; then
 		# Configuring repositories for Debian 7
@@ -252,7 +252,7 @@ Acquire::https::deb.nodesource.com::Verify-Peer \"false\";
 		echo "deb http://ftp.debian.org/debian/ wheezy-updates main contrib non-free" >> /etc/apt/sources.list
 		echo "deb http://security.debian.org/ wheezy/updates main contrib non-free" >> /etc/apt/sources.list
 
-		# There is a need to install apt-transport-https 
+		# There is a need to install apt-transport-https
 		# package before preparing third party repositories
 		echo "Updating repositories ..."
 	        apt-get update 2>&1 > /var/apt-get-update-default.log
@@ -262,24 +262,24 @@ Acquire::https::deb.nodesource.com::Verify-Peer \"false\";
 			echo "Error: Unable to install apt-transport-https"
 			# exit 3
 		fi
-	
+
 		# Prepare owncloud repo
 		echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/community/Debian_7.0/ /' > /etc/apt/sources.list.d/owncloud.list
 		wget http://download.opensuse.org/repositories/isv:/ownCloud:/community/Debian_7.0/Release.key -O- | apt-key add -
-		
+
 		# Prepare Sogo repo
                 apt-key adv --keyserver keys.gnupg.net --recv-key 0x810273C4
                 echo 'deb http://packages.inverse.ca/SOGo/nightly/3/debian/ wheezy wheezy' > /etc/apt/sources.list.d/sogo.list
-		
+
 		# Prepare prosody repo
 		# echo 'deb http://packages.prosody.im/debian wheezy main' > /etc/apt/sources.list.d/prosody.list
 		# wget https://prosody.im/files/prosody-debian-packages.key -O- | apt-key add -
- 
+
 		# Prepare tahoe repo
 		# echo 'deb https://dl.dropboxusercontent.com/u/18621288/debian wheezy main' > /etc/apt/sources.list.d/tahoei2p.list
 		# apt-key advanced --keyserver pgp.net.nz --recv-keys 8CF6E896B3C01B09
 		# W: GPG error: https://dl.dropboxusercontent.com wheezy Release: The following signatures were invalid: KEYEXPIRED 1460252357
-				
+
 		# Prepare yacy repo
 		echo 'deb http://debian.yacy.net ./' > /etc/apt/sources.list.d/yacy.list
 		apt-key advanced --keyserver pgp.net.nz --recv-keys 03D886E7
@@ -298,9 +298,9 @@ Acquire::https::deb.nodesource.com::Verify-Peer \"false\";
 			rm -r jcameron-key.asc
 		fi
 		wget http://www.webmin.com/jcameron-key.asc
-		apt-key add jcameron-key.asc 
+		apt-key add jcameron-key.asc
 
-# Preparing repositories for Debian 8 GNU/Linux 
+# Preparing repositories for Debian 8 GNU/Linux
 
 	elif [ $PLATFORM = "D8" ]; then
 		# Avoid macchanger asking for information
@@ -311,17 +311,17 @@ Acquire::https::deb.nodesource.com::Verify-Peer \"false\";
 		#echo "deb http://ftp.es.debian.org/debian/ jessie-updates main" >> /etc/apt/sources.list
 		#echo "deb http://security.debian.org/ jessie/updates main" >> /etc/apt/sources.list
 		cat << EOF >  /etc/apt/sources.list
-deb http://ftp.debian.org/debian jessie main 
-deb http://ftp.debian.org/debian jessie-updates main 
+deb http://ftp.debian.org/debian jessie main
+deb http://ftp.debian.org/debian jessie-updates main
 deb http://security.debian.org jessie/updates main
-deb http://ftp.debian.org/debian jessie-backports main 
+deb http://ftp.debian.org/debian jessie-backports main
 deb-src http://ftp.debian.org/debian jessie main
-deb-src http://ftp.debian.org/debian jessie-updates main 
+deb-src http://ftp.debian.org/debian jessie-updates main
 deb-src http://security.debian.org jessie/updates main
-deb-src http://ftp.debian.org/debian jessie-backports main 
+deb-src http://ftp.debian.org/debian jessie-backports main
 EOF
 
-		# There is a need to install apt-transport-https 
+		# There is a need to install apt-transport-https
 		# package before preparing third party repositories
 		echo "Updating repositories ..." | log_install
        		apt-get update 2>&1 > /var/apt-get-update-default.log
@@ -335,15 +335,15 @@ EOF
 		# Prepare owncloud repo
 		echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/community/Debian_8.0/ /' > /etc/apt/sources.list.d/owncloud.list
 		wget http://download.opensuse.org/repositories/isv:/ownCloud:/community/Debian_8.0/Release.key -O- | apt-key add -
-		
+
 		# Prepare Sogo repo
                 apt-key adv --keyserver keys.gnupg.net --recv-key 0x810273C4
                 echo 'deb http://packages.inverse.ca/SOGo/nightly/3/debian/ jessie jessie' > /etc/apt/sources.list.d/sogo.list
-		
+
 		# Prepare prosody repo
 #		echo 'deb http://packages.prosody.im/debian wheezy main' > /etc/apt/sources.list.d/prosody.list
 #		wget https://prosody.im/files/prosody-debian-packages.key -O- | apt-key add -
- 
+
 		# Prepare tahoe repo
 		# echo 'deb https://dl.dropboxusercontent.com/u/18621288/debian wheezy main' > /etc/apt/sources.list.d/tahoei2p.list
 
@@ -359,14 +359,14 @@ EOF
 		echo 'deb http://deb.torproject.org/torproject.org jessie main'  > /etc/apt/sources.list.d/tor.list
 		gpg --keyserver pgp.net.nz --recv 886DDD89
 		gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
-		
+
 		# Prepare Webmin repo
 		echo 'deb http://download.webmin.com/download/repository sarge contrib' > /etc/apt/sources.list.d/webmin.list
 		if [ -e jcameron-key.asc ]; then
 			rm -r jcameron-key.asc
 		fi
 		wget http://www.webmin.com/jcameron-key.asc
-		apt-key add jcameron-key.asc 
+		apt-key add jcameron-key.asc
 
 		# Prepare kibaba repo
 		wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | apt-key add -
@@ -376,7 +376,7 @@ EOF
 		wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | apt-key add -
 		echo "deb https://packages.elastic.co/logstash/2.4/debian stable main" > /etc/apt/sources.list.d/elastic.list
 
-	
+
 		# Prepare backports repo (suricata, roundcube)
 #		echo 'deb http://ftp.debian.org/debian jessie-backports main' > /etc/apt/sources.list.d/backports.list
 
@@ -399,7 +399,7 @@ EOF
 	elif [ $PLATFORM = "T7" ]; then
 		# Avoid macchanger asking for information
 		export DEBIAN_FRONTEND=noninteractive
-		
+
 		# Configuring repositories for Trisquel 7
 		echo "deb http://fr.archive.trisquel.info/trisquel/ belenos main" > /etc/apt/sources.list
 		echo "deb-src http://fr.archive.trisquel.info/trisquel/ belenos main" >> /etc/apt/sources.list
@@ -408,7 +408,7 @@ EOF
 		echo "deb http://fr.archive.trisquel.info/trisquel/ belenos-updates main" >> /etc/apt/sources.list
 		echo "deb-src http://fr.archive.trisquel.info/trisquel/ belenos-updates main" >> /etc/apt/sources.list
 
-		# There is a need to install apt-transport-https 
+		# There is a need to install apt-transport-https
 		# package before preparing third party repositories
 		echo "Updating repositories ..."
    		apt-get update 2>&1 > /var/apt-get-update-default.log
@@ -419,19 +419,19 @@ EOF
 		else
 			echo "Updating done successfully"
 		fi
-	
+
  		echo "Installing apt-transport-https ..."
 		apt-get install -y --force-yes apt-transport-https 2>&1 > /var/apt-get-install-aptth.log
 
 		if [ $? -ne 0 ]; then
 			echo "ERROR: UNABLE TO INSTALL PACKAGES: apt-transport-https"
 			exit 11
-		else 
+		else
 			echo "Installation done successfully"
 		fi
 
 		echo "Preparing third party repositories ..."
-		
+
 		# Prepare yacy repo
 		echo 'deb http://debian.yacy.net ./' > /etc/apt/sources.list.d/yacy.list
 		apt-key advanced --keyserver pgp.net.nz --recv-keys 03D886E7
@@ -439,10 +439,10 @@ EOF
 		# Prepare i2p repo
 		echo 'deb https://deb.i2p2.de/ stable main' > /etc/apt/sources.list.d/i2p.list
 		wget --no-check-certificate https://geti2p.net/_static/i2p-debian-repo.key.asc -O- | apt-key add -
-	
+
 		# Prepare tahoe repo
 		# echo 'deb https://dl.dropboxusercontent.com/u/18621288/debian wheezy main' > /etc/apt/sources.list.d/tahoei2p.list
-		
+
 		# Prepare tor repo
 		echo 'deb http://deb.torproject.org/torproject.org wheezy main'  > /etc/apt/sources.list.d/tor.list
 		gpg --keyserver pgp.net.nz --recv 886DDD89
@@ -454,10 +454,10 @@ EOF
 			rm -r jcameron-key.asc
 		fi
 		wget http://www.webmin.com/jcameron-key.asc
-		apt-key add jcameron-key.asc 
+		apt-key add jcameron-key.asc
 
-	else 
-		echo "ERROR: UNKNOWN PLATFORM" 
+	else
+		echo "ERROR: UNKNOWN PLATFORM"
 		exit 4
 	fi
 }
@@ -489,7 +489,7 @@ chmod +x /root/libre_scripts/apmode.sh
 # ----------------------------------------------
 # install_packages
 # ----------------------------------------------
-install_packages() 
+install_packages()
 {
 	echo "Updating repositories packages ... " | log_install
 	apt-get update 2>&1 > /var/apt-get-update.log
@@ -498,7 +498,7 @@ install_packages()
 # Installing Packages for Debian 7 GNU/Linux
 
 if [ $PLATFORM = "D7" ]; then
-	DEBIAN_FRONTEND=noninteractive 
+	DEBIAN_FRONTEND=noninteractive
 	apt-get install -y --force-yes \
 	privoxy nginx php5-common \
 	php5-fpm php5-cli php5-json php5-mysql php5-curl php5-intl \
@@ -512,7 +512,7 @@ if [ $PLATFORM = "D7" ]; then
 	unzip debian-keyring subversion build-essential libncurses5-dev \
 	i2p i2p-keyring yacy virtualenv pwgen \
         killyourtv-keyring squidguard \
-	c-icap clamav  clamav-daemon  gcc make libcurl4-gnutls-dev libicapapi-dev \
+	c-icap clamav  clamav-daemon gcc make libcurl4-gnutls-dev libicapapi-dev \
 	deb.torproject.org-keyring u-boot-tools console-tools \
         gnupg openssl python-virtualenv python-pip python-lxml git \
         libjpeg62-turbo libjpeg62-turbo-dev zlib1g-dev python-dev webmin \
@@ -523,7 +523,7 @@ if [ $PLATFORM = "D7" ]; then
 
 elif [ $PLATFORM = "D8" ]; then
 	DEBIAN_FRONTEND=noninteractive
- 	
+
 	# libs and tools
 	apt-get install -y --force-yes \
         php5-common php5-fpm php5-cli php5-json php5-mysql \
@@ -571,7 +571,7 @@ elif [ $PLATFORM = "D8" ]; then
 # Installing Packages for Trisquel 7.0 GNU/Linux
 
 elif [ $PLATFORM = "T7" ]; then
-	DEBIAN_FRONTEND=noninteractive 
+	DEBIAN_FRONTEND=noninteractive
 	apt-get install -y --force-yes \
 	privoxy nginx php5-common \
 	php5-fpm php5-cli php5-json php5-mysql php5-curl php5-intl \
@@ -595,7 +595,7 @@ elif [ $PLATFORM = "T7" ]; then
 # Installing Packages for Ubuntu 14.04 GNU/Linux
 
 elif [ $PLATFORM = "U14" -o $PLATFORM = "U12" ]; then
-	DEBIAN_FRONTEND=noninteractive 
+	DEBIAN_FRONTEND=noninteractive
 	apt-get install -y --force-yes \
 	pwgen debconf-utils privoxy nginx php5-common \
 	php5-fpm php5-cli php5-json php5-mysql php5-curl php5-intl \
@@ -608,8 +608,8 @@ elif [ $PLATFORM = "U14" -o $PLATFORM = "U12" ]; then
 	ca-certificates-java openssh-server ssh wireless-tools usbutils \
 	unzip debian-keyring subversion build-essential libncurses5-dev \
 	i2p yacy \
-	c-icap clamav  clamav-daemon  gcc make libcurl4-gnutls-dev \
-	libicapapi-dev u-boot-tools console-tools* squidguard \
+	c-icap clamav libicapapi-dev clamav-daemon gcc make libcurl4-gnutls-dev \
+	u-boot-tools console-tools* squidguard \
         gnupg openssl python-virtualenv python-pip python-lxml git \
          zlib1g-dev python-dev webmin fail2ban libsystemd-dev \
         postfix mailutils aptitude \
@@ -683,7 +683,7 @@ fi
 }
 
 # ----------------------------------------------
-# This function checks hardware 
+# This function checks hardware
 # Hardware can be.
 # 1. ARM for odroid board.
 # 2. INTEL or AMD for Physical/Virtual machine.
@@ -713,11 +713,11 @@ elif grep -q AMD /proc/cpuinfo; then
            PROCESSOR="AMD"
            HARDWARE=`dmidecode -s system-product-name`
 	fi
-	
+
 	# Detecting Architecture
  	ARCH=`uname -m`
 
-        # Printing Processor Hardware and Architecture types     
+  # Printing Processor Hardware and Architecture types
 
 	echo "Processor: $PROCESSOR" | log_install
   echo "Hardware: $HARDWARE" | log_install
@@ -727,9 +727,9 @@ elif grep -q AMD /proc/cpuinfo; then
 
 
 # ----------------------------------------------
-# This script checks requirements for Physical 
+# This script checks requirements for Physical
 # Machines.
-# 
+#
 #  Minimum requirements are:
 #
 #  * 2 Network Interfaces.
@@ -739,79 +739,79 @@ elif grep -q AMD /proc/cpuinfo; then
 # ----------------------------------------------
 check_requirements()
 {
-	echo "Checking requirements ..." | tee -a /var/libre_install.log
+	echo "Checking requirements ..." | log_install
 
-        # This variable contains network interfaces quantity.  
+        # This variable contains network interfaces quantity.
 	# NET_INTERFACES=`ls /sys/class/net/ | grep -w 'eth0\|eth1\|wlan0\|wlan1' | wc -l`
 
         # This variable contains total physical memory size.
-	echo -n "Physical memory size: " | tee -a /var/libre_install.log
+	echo -n "Physical memory size: " | log_install
         MEMORY=`grep MemTotal /proc/meminfo | awk '{print $2}'`
-	echo "$MEMORY KB"	| tee -a /var/libre_install.log
+	echo "$MEMORY KB"	| log_install
 
 	# This variable contains total free space on root partition.
-	echo -n "Root partition size: " | tee -a /var/libre_install.log
+	echo -n "Root partition size: " | log_install
 	STORAGE=`df / | grep -w "/" | awk '{print $4}'`
-	echo "$STORAGE KB" 	| tee -a /var/libre_install.log
-       
+	echo "$STORAGE KB" 	| log_install
+
         # Checking network interfaces quantity.
 	# if [ $NET_INTERFACES -le 1 ]; then
         #	echo "You need at least 2 network interfaces. Exiting"
-        #	exit 4 
+        #	exit 4
         # fi
-	
+
 	# Checking physical memory size.
-        if [ $MEMORY -le 1900000 ]; then 
-		echo "You need at least 2GB of RAM. Exiting" | tee -a /var/libre_install.log
+        if [ $MEMORY -le 1900000 ]; then
+		echo "You need at least 2GB of RAM. Exiting" | log_install
                 exit 5
         fi
 
-	# Checking free space. 
+	# Checking free space.
 	MIN_STORAGE=12000000
 	STORAGE2=`echo $STORAGE | awk -F. {'print $1'}`
 	if [ $STORAGE2 -lt $MIN_STORAGE ]; then
-		echo "You need at least 16GB of free space. Exiting" | tee -a /var/libre_install.log
+		echo "You need at least 16GB of free space. Exiting" | log_install
 		exit 6
 	fi
-	
+
 	# Checking architecture.
         if [ "$ARCH" != "x86_64" ]; then
-                echo "You need amd64 architecture to continue. Exiting" | tee -a /var/libre_install.log
+                echo "You need amd64 architecture to continue. Exiting" | log_install
                 exit 7
         fi
 }
 
 
 # ----------------------------------------------
-# This function enables DHCP client and checks 
+# This function enables DHCP client and checks
 # for Internet on predefined network interface.
 #
 # Steps to define interface are:
 #
-# 1. Checking Internet access. 
+# 1. Checking Internet access.
 # *
 # *
-# ***** If success. 
+# ***** If success.
 # *
-# *     2. Get Interface name 
+# *     2. Get Interface name
 # *
-# ***** If no success. 
+# ***** If no success.
 #     *
-#     * 2. Checking for DHCP server and Internet in  
+#     * 2. Checking for DHCP server and Internet in
 #       *  network connected to eth0.
 #       *
 #       ***** If success.
 #       *   *
-#       *   * 2. Enable DHCP client on eth0 and   
+#       *   * 2. Enable DHCP client on eth0 and
 #       *        default route to eth0
 #       *
-#       ***** If no success. 
-#           * 
-#           * 2. Checking for DHCP server and Internet 
+#       ***** If no success.
+#           *
+#           * 2. Checking for DHCP server and Internet
 #           *  in network connected to eth1
 #           *
 #           ***** If success.
-#           *   * 
+#           *   *
 #           *   * 3. Enable DHCP client on eth1.
 #           *
 #           *
@@ -822,8 +822,8 @@ check_requirements()
 # ----------------------------------------------
 get_interfaces()
 {
-	# Check internet Connection. If Connection exist then get 
-	# and save Internet side network interface name in 
+	# Check internet Connection. If Connection exist then get
+	# and save Internet side network interface name in
 	# EXT_INTERFACE variable
 	if ping -c1 8.8.8.8 2>&1 | log_install; then
 		EXT_INTERFACE=`route -n | awk {'print $1 " " $8'} | grep "0.0.0.0" | awk {'print $2'} | sed -n '1p'`
@@ -1098,14 +1098,14 @@ install_nginx()
 
         echo "Building nginx ..." | log_install
         cd $INSTALL_HOME
-	
+
 	mkdir /etc/nginx/
 	mkdir /var/log/nginx
 	touch /var/run/nginx.lock
 	touch /var/run/nginx.pid
 	touch /var/log/nginx/error.log
 	touch /var/log/nginx/access.log
-	touch /etc/nginx/nginx.conf	
+	touch /etc/nginx/nginx.conf
 
         cd nginx-1.8.0/
 	./configure \
@@ -1444,9 +1444,9 @@ install_squid()
 	wget http://adzapper.sourceforge.net/scripts/squid_redirect
 	chmod +x ./squid_redirect
 	mv squid_redirect /usr/bin/
-	
+
 	# Adding library path
-	echo "include /usr/local/lib" >> /etc/ld.so.conf 
+	echo "include /usr/local/lib" >> /etc/ld.so.conf
 	ldconfig
 }
 
@@ -1521,9 +1521,9 @@ install_squidguard_bl()
 	tar xvzf urlblacklist.tar.gz
 	cd ../
         fi
-       
+
 	# Making squidGuard blacklists directory
-	mkdir -p /usr/local/squidGuard/db 
+	mkdir -p /usr/local/squidGuard/db
 	# Extracting blacklists
         cp blacklists.tgz /usr/local/squidGuard/db
         tar xfv /usr/local/squidGuard/db/blacklists.tgz \
@@ -1531,7 +1531,7 @@ install_squidguard_bl()
         # ads blacklists
         sed -n '57,2418p' < serverlist.php > /usr/local/squidGuard/db/blacklists/ads/domains
         # urlblacklist blacklists
-        cat blacklistdomains/blacklists/ads/domains >> /usr/local/squidGuard/db/blacklists/ads/domains 
+        cat blacklistdomains/blacklists/ads/domains >> /usr/local/squidGuard/db/blacklists/ads/domains
 	# Shalalist domains
         cat BL/adv/domains >> /usr/local/squidGuard/db/blacklists/ads/domains
         cat BL/adv/urls >> /usr/local/squidGuard/db/blacklists/ads/urls
@@ -1639,7 +1639,7 @@ install_ecapguardian()
         sed -i '/AM_INIT_AUTOMAKE/c\AM_INIT_AUTOMAKE([subdir-objects])' configure.ac
 
 	./autogen.sh
-	./configure '--prefix=/usr' '--enable-clamd=yes' '--with-proxyuser=e2guardian' '--with-proxygroup=e2guardian' '--sysconfdir=/etc' '--localstatedir=/var' '--enable-icap=yes' '--enable-commandline=yes' '--enable-email=yes' '--enable-ntlm=yes' '--enable-trickledm=yes' '--mandir=${prefix}/share/man' '--infodir=${prefix}/share/info' 'CXXFLAGS=-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security' 'LDFLAGS=-Wl,-z,relro' 'CPPFLAGS=-D_FORTIFY_SOURCE=2' 'CFLAGS=-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security' '--enable-pcre=yes' '--enable-locallists=yes' 
+	./configure '--prefix=/usr' '--enable-clamd=yes' '--with-proxyuser=e2guardian' '--with-proxygroup=e2guardian' '--sysconfdir=/etc' '--localstatedir=/var' '--enable-icap=yes' '--enable-commandline=yes' '--enable-email=yes' '--enable-ntlm=yes' '--enable-trickledm=yes' '--mandir=${prefix}/share/man' '--infodir=${prefix}/share/info' 'CXXFLAGS=-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security' 'LDFLAGS=-Wl,-z,relro' 'CPPFLAGS=-D_FORTIFY_SOURCE=2' 'CFLAGS=-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security' '--enable-pcre=yes' '--enable-locallists=yes'
 	make && make install
 	if [ $? -ne 0 ]; then
 		echo "Error: unable to install ecapguardian" | log_install
@@ -1674,10 +1674,10 @@ install_suricata()
         echo "
 skipfile local.rules
 skipfile deleted.rules
-skipfile snort.conf 
+skipfile snort.conf
         " > /etc/oinkmaster.conf
         echo "url = https://rules.emergingthreats.net/open/suricata-3.1/emerging.rules.tar.gz" \
-        >> /etc/oinkmaster.conf 
+        >> /etc/oinkmaster.conf
         oinkmaster -C /etc/oinkmaster.conf -o /etc/suricata/rules
         if [ $? -ne 0 ]; then
                 echo "Error: unable to install suricata rules. Exiting ..." | log_install
@@ -2605,13 +2605,13 @@ ssh-keygen -f "/root/.ssh/known_hosts" -R [localhost]:8024
     venv/bin/pip install tahoe-lafs[tor,i2p] # required with TOR + I2P
 #fi
 
-# VERY IMPORTANT. FIX a bug that causes max file uploadaed through sshfs/sftp 
-# comes to zero size if size > 55 bytes. 
+# VERY IMPORTANT. FIX a bug that causes max file uploadaed through sshfs/sftp
+# comes to zero size if size > 55 bytes.
 # This happens some times ( 50% aprox repeatable ) not only on inmutable but also on mutables
 
 # The fix is /home/tahoe-lafs/venv/lib/python2.7/site-packages/allmydata/immutable/upload.py file line 1519 must:
 # -URI_LIT_SIZE_THRESHOLD = 55
-# +URI_LIT_SIZE_THRESHOLD = 55555 
+# +URI_LIT_SIZE_THRESHOLD = 55555
 
 #cd /home/tahoe-lafs/venv/lib/python2.7/site-packages/allmydata/immutable
 #patching=$(sed -e "s/URI_LIT_SIZE_THRESHOLD = 55/URI_LIT_SIZE_THRESHOLD = 55/g" upload.py > /tmp/upload.py.patched)
@@ -2631,7 +2631,7 @@ mkdir /root/.tahoe
 
 # -----------------------------------------------
 # This function saves variables in file, so
-# parametization script can read and use these 
+# parametization script can read and use these
 # values
 # Variables to save are:
 #   PLATFORM
@@ -2696,7 +2696,7 @@ Int_interface: $INT_INTERFACE" \
                  > /var/box_variables
 		fi
 	else
-		touch /var/box_variables	
+		touch /var/box_variables
         	echo -e \
 "Platform: $PLATFORM\n\
 Hardware: $HARDWARE\n\
@@ -2711,11 +2711,11 @@ Int_interface: $INT_INTERFACE" \
 
 
 # ----------------------------------------------
-# MAIN 
+# MAIN
 # ----------------------------------------------
 # This is the main function of this script.
 # It uses functions defined above to check user,
-# Platform, Hardware, System requirements and 
+# Platform, Hardware, System requirements and
 # Internet connection. Then it downloads
 # installs all neccessary packages.
 # ----------------------------------------------
@@ -2724,32 +2724,32 @@ Int_interface: $INT_INTERFACE" \
 # At first script will check
 #
 # 1. User      ->  Need to be root
-# 2. Platform  ->  Need to be Debian 7 / Debian 8 / Ubuntu 12.04 / Ubuntu 14.04 
+# 2. Platform  ->  Need to be Debian 7 / Debian 8 / Ubuntu 12.04 / Ubuntu 14.04
 # 3. Hardware  ->  Need to be ARM / Intel or AMD
 # ----------------------------------------------
-check_root    	# Checking user 
+check_root    	# Checking user
 get_platform  	# Getting platform info
 get_hardware  	# Getting hardware info
 # ----------------------------------------------
 # If script detects Physical/Virtual machine
 # then next steps will be
-# 
+#
 # 4. Checking requirements
 # 5. Get Internet access
 # 6. Configure repositories
 # 7. Download and Install packages
 # ----------------------------------------------
-if [ "$PROCESSOR" = "Intel" -o "$PROCESSOR" = "AMD" -o "$PROCESSOR" = "ARM" ]; then 
+if [ "$PROCESSOR" = "Intel" -o "$PROCESSOR" = "AMD" -o "$PROCESSOR" = "ARM" ]; then
         setterm -blank 0         # Dissable console blanking ( power saving )
 	check_internet           # Check Internet access
 #	check_assemblance        # Check router assemblance
-	check_requirements       # Checking requirements for 
-        get_interfaces  	 # Get DHCP on eth0 or eth1 and 
+	check_requirements       # Checking requirements for
+        get_interfaces  	 # Get DHCP on eth0 or eth1 and
 				 # connect to Internet
 	configure_repositories	 # Prepare and update repositories
         set_cpu_throttle         # EXPERIMENTAL . Try to avoid fake warnings when CPU throttle under powersave
 #	install_apmode		 # Prepare wlan AP script
-	install_packages       	 # Download and install packages	
+	install_packages       	 # Download and install packages
 #	install_libressl	 # Install Libressl package
 	install_modsecurity      # Install modsecurity package
 #	install_waffle		 # Install modsecurity GUI WAF-FLE package
@@ -2764,7 +2764,7 @@ if [ "$PROCESSOR" = "Intel" -o "$PROCESSOR" = "AMD" -o "$PROCESSOR" = "ARM" ]; t
 	install_squid		 # Install squid package
 	install_squidclamav	 # Install SquidClamav package
 	install_squidguard_bl	 # Install Squidguard blacklists
-	install_squidguardmgr	 # Install Squidguardmgr (Manager Gui) 
+	install_squidguardmgr	 # Install Squidguardmgr (Manager Gui)
 	install_ecapguardian	 # Inatall ecapguardian package
 #	install_e2guardian	 # Inatall e2guardian package
 	install_suricata	 # Install Suricata package
@@ -2800,9 +2800,9 @@ if [ "$PROCESSOR" = "Intel" -o "$PROCESSOR" = "AMD" -o "$PROCESSOR" = "ARM" ]; t
 fi
 
 # ---------------------------------------------
-# If script reachs to this point then it's done 
+# If script reachs to this point then it's done
 # successfully
 # ---------------------------------------------
 #echo "Initialization done successfully"
 
-exit 
+exit
